@@ -14,9 +14,9 @@ const email = ref('');
 const photo_url = ref('');
 const testSelect = ref('');
 const partisPolitiques = ref([]);
-const selectedFileName = ref(null);
+let selectedFileName = ref(null);
 const CommuneList = ["Adjame","Bingerville","Anyama","Abobo","Koumassi","Yopougon","Cocody","Marcory","Port-Bouet","Attecoube","Songon","Treichville","Plateau"];
-const fileInput =ref(null);
+let fileInput =ref(null);
 const partiePolitiques = ref([]);
 const pt_id = ref('');
 
