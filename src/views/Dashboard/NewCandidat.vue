@@ -1,7 +1,7 @@
 <script setup>
 import {ref,watch,onMounted} from 'vue';
 import axios from 'axios'
-import { useAuthStore } from '../../store/auth';
+import { useAuthStore } from '@/store/auth';
 const store = useAuthStore();
 
 

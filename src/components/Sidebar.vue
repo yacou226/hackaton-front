@@ -7,14 +7,14 @@
         <div class>
           <div class=" mx-auto">
             <div class="bg-white rounded-lg p-1">
-              <p class="text-center text-sm text-gray-800 text-left">Ajouter un partie politique</p>
+              <p class= " text-center text-sm text-gray-800  ">Ajouter un partie politique</p>
             
             </div>
             <div class=" rounded-b-lg py-2 px-4  w-full">
               <form class="mt-1">
                 <div class="relative w-full">
                   <input
-                    class="appearance-none w-full border pl-5 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600 transition rounded-md w-full py-6 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
+                    class="appearance-none w-full border pl-5 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600 transition rounded-md  py-6 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
                     id="username"
                     type="text"
                     placeholder="Nom du part politique"
@@ -47,7 +47,7 @@
     </Teleport>
 
     <div class="flex items-center justify-center">
-      <img class="h-16" src="../assets/logo.png" alt="logo" />
+      <img class="h-16" src="@/assets/logo.png" alt="logo" />
     </div>
     <!-- menu -->
     <div class="flex flex-col items-center justify-center">
