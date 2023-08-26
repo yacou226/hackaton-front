@@ -7,7 +7,11 @@ const  candidatList = ref([]);
 
  async function fetchAllCandidat(){
   let response = await axios.get('https://lesinnovateurs.me/api/public/candidats');
-  console.log(response.data);
+    candidatList.value = response.data.data;
+    console.log('list des candidats',candidatList.value);
+    candidatList.value.forEach(item => {
+  console.log(item.user.nom);
+});
 };
 
 onMounted(()=>{
@@ -49,7 +53,7 @@ onMounted(()=>{
                             <tr>
                                 <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     <button class="flex items-center gap-x-3 focus:outline-none">
-                                        <span>Company</span>
+                                        <span>Nom / prénom</span>
 
                                         <svg class="h-3" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.13347 0.0999756H2.98516L5.01902 4.79058H3.86226L3.45549 3.79907H1.63772L1.24366 4.79058H0.0996094L2.13347 0.0999756ZM2.54025 1.46012L1.96822 2.92196H3.11227L2.54025 1.46012Z" fill="currentColor" stroke="currentColor" stroke-width="0.1" />
@@ -60,147 +64,53 @@ onMounted(()=>{
                                 </th>
 
                                 <th scope="col" class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    Status
+                                    Comune
                                 </th>
 
                                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    About
+                                    Email
                                 </th>
 
-                                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Users</th>
+                                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Partie politique</th>
 
-                                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">License use</th>
+                                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Téléphone</th>
 
                                 <th scope="col" class="relative py-3.5 px-4">
-                                    <span class="sr-only">Edit</span>
+                                    <span class="s">Action</span>
                                 </th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                            <tr>
+                            <tr v-for="candidat in candidatList" key="candidat.id">
                                 <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                     <div>
-                                        <h2 class="font-medium text-gray-800 dark:text-white ">Catalog</h2>
-                                        <p class="text-sm font-normal text-gray-600 dark:text-gray-400">catalogapp.io</p>
+                                        <h2 class="font-medium text-gray-800 dark:text-white ">{{candidat.user.nom}} {{candidat.user.prenom}}</h2>
                                     </div>
                                 </td>
                                 <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
                                     <div class="inline px-3 py-1 text-sm font-normal rounded-full text-emerald-500 gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                                        Customer
+                                        {{candidat.user.commune}}
                                     </div>
                                 </td>
                                 <td class="px-4 py-4 text-sm whitespace-nowrap">
                                     <div>
-                                        <h4 class="text-gray-700 dark:text-gray-200">Content curating app</h4>
-                                        <p class="text-gray-500 dark:text-gray-400">Brings all your news into one place</p>
+                                        <h4 class="text-gray-700 dark:text-gray-200"> {{candidat.user.email}} </h4>
                                     </div>
                                 </td>
                                 <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=256&q=80" alt="">
-                                        <img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=256&q=80" alt="">
-                                        <img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1256&q=80" alt="">
-                                        <img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=256&q=80" alt="">
-                                        <p class="flex items-center justify-center w-6 h-6 -mx-1 text-xs text-blue-600 bg-blue-100 border-2 border-white rounded-full">+4</p>
+                                    <div class="flex items-center ">
+                                        <span class="inline px-3 py-1 text-sm font-normal rounded-full text-emerald-500 gap-x-2 bg-emerald-100/60 dark:bg-gray-800">{{ candidat.parti_politique.nom}}</span>
                                     </div>
                                 </td>
 
                                 <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <div class="w-48 h-1.5 bg-blue-200 overflow-hidden rounded-full">
-                                        <div class="bg-blue-500 w-2/3 h-1.5"></div>
-                                    </div>
+                                    <span>+225{{ candidat.user.phone }}</span>
                                 </td>
 
                                 <td class="px-4 py-4 text-sm whitespace-nowrap">
                                     <button class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                                        </svg>
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                    <div>
-                                        <h2 class="font-medium text-gray-800 dark:text-white ">Circooles</h2>
-                                        <p class="text-sm font-normal text-gray-600 dark:text-gray-400">getcirooles.com</p>
-                                    </div>
-                                </td>
-                                <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
-                                    <div class="inline px-3 py-1 text-sm font-normal text-gray-500 bg-gray-100 rounded-full dark:text-gray-400 gap-x-2 dark:bg-gray-800">
-                                        Churned
-                                    </div>
-                                </td>
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <div>
-                                        <h4 class="text-gray-700 dark:text-gray-200">Design software</h4>
-                                        <p class="text-gray-500 dark:text-gray-400">Super lightweight design app</p>
-                                    </div>
-                                </td>
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=256&q=80" alt="">
-                                        <img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=256&q=80" alt="">
-                                        <img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1256&q=80" alt="">
-                                        <img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=256&q=80" alt="">
-                                        <p class="flex items-center justify-center w-6 h-6 -mx-1 text-xs text-blue-600 bg-blue-100 border-2 border-white rounded-full">+4</p>
-                                    </div>
-                                </td>
-
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <div class="w-48 h-1.5 bg-blue-200 overflow-hidden rounded-full">
-                                        <div class="bg-blue-500 w-2/5 h-1.5"></div>
-                                    </div>
-                                </td>
-
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <button class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                                        </svg>
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                    <div>
-                                        <h2 class="font-medium text-gray-800 dark:text-white ">Sisyphus</h2>
-                                        <p class="text-sm font-normal text-gray-600 dark:text-gray-400">sisyphus.com</p>
-                                    </div>
-                                </td>
-                                <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
-                                    <div class="inline px-3 py-1 text-sm font-normal rounded-full text-emerald-500 gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                                        Customer
-                                    </div>
-                                </td>
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <div>
-                                        <h4 class="text-gray-700 dark:text-gray-200">Automation and workflow</h4>
-                                        <p class="text-gray-500 dark:text-gray-400">Time tracking, invoicing and expenses</p>
-                                    </div>
-                                </td>
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=256&q=80" alt="">
-                                        <img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=256&q=80" alt="">
-                                        <img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1256&q=80" alt="">
-                                        <img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=256&q=80" alt="">
-                                        <p class="flex items-center justify-center w-6 h-6 -mx-1 text-xs text-blue-600 bg-blue-100 border-2 border-white rounded-full">+4</p>
-                                    </div>
-                                </td>
-
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <div class="w-48 h-1.5 bg-blue-200 overflow-hidden rounded-full">
-                                        <div class="bg-blue-500 w-11/12 h-1.5"></div>
-                                    </div>
-                                </td>
-
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <button class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                                         </svg>
                                     </button>
                                 </td>
