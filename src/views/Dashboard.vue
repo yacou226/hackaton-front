@@ -1,6 +1,7 @@
 <script setup>
-import SideBar from '@/Components/SideBar.vue';
-import NavBar from '@/components/NavBar.vue';
+import Sidebar from "@/components/Sidebar.vue";
+import NavBar from "@/components/NavBar.vue";
+
 
 
 
@@ -14,7 +15,7 @@ import NavBar from '@/components/NavBar.vue';
 		<div class="bg-gray-50 h-full w-full border flex    p-6  ">
 		
 		<div class="h-full w-80 bg-white shadow rounded-lg ">
-			<SideBar />
+			<Sidebar />
 		</div>
 		
 		<div class="w-full h-full ml-4  overflow-y-auto  ">
