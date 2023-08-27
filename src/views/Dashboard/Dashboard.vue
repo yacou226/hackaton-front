@@ -24,7 +24,7 @@ import NavBar from "@/components/NavBar.vue";
 			</div>
 			<!-- RouterView -->
 			<div class="">
-				<router-view></router-view>
+				<router-view> </router-view>
 			</div>
 
 		</div>

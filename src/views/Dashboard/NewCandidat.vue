@@ -218,9 +218,7 @@ watch(photo_url, (newUrl, oldUrl) => {
         </div>
       </div>
     </div>
-
     </form>
-
   </div>
 </div>
   </div>
