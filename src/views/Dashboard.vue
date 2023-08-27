@@ -11,7 +11,7 @@ import NavBar from "@/components/NavBar.vue";
 
 	<!-- main div -->
 	<div class="w-screen h-screen ">
-		<!-- <div class="bg-gray-50 h-full w-full border flex    p-6  ">
+		<div class="bg-gray-50 h-full w-full border flex    p-6  ">
 		
 		<div class="h-full w-80 bg-white shadow rounded-lg ">
 			<Sidebar />
@@ -28,8 +28,7 @@ import NavBar from "@/components/NavBar.vue";
 			</div>
 
 		</div>
-	</div> -->
-	<h1>helloword</h1>
+	</div>
 	</div>
 </template>
 <style>
