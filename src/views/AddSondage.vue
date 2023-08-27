@@ -5,7 +5,21 @@ const titre = ref('') ;
 const description= ref('') ;
 const commune = ref('');
 const CommuneList = ["Adjame","Bingerville","Anyama","Abobo","Koumassi","Yopougon","Cocody","Marcory","Port-Bouet","Attecoube","Songon","Treichville","Plateau"];
+const message = ref('');
+const show = ref(false);
 
+function  showMessage(){
+  if (show.value) {
+    
+      message.value = 'Sondage Ajouter avec success';
+      setInterval(() => {
+        message.value = '';
+      }, 2000);
+   
+  }else{
+    message.value = '';
+  }
+}
 
 async function AddSondage(){
   const data = {
@@ -24,6 +38,8 @@ async function AddSondage(){
   })
  .then((response)=>{
    console.log(response.data);
+   show.value = true;
+   showMessage();
  })
  .catch((err)=>{
     console.log(err);
@@ -40,7 +56,9 @@ async function AddSondage(){
   <div>
     <div class="p-8 rounded border border-gray-200">
       <h1 class="font-medium text-3xl">Ajouter un sondage</h1>
-
+        <div class="">
+          <h1 class="text-green-400"> {{message}} </h1>
+        </div>
       <form @submit.prevent="AddSondage">
         <div class="mt-8 space-y-6">
           <div>

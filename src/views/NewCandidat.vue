@@ -19,6 +19,8 @@ const CommuneList = ["Adjame","Bingerville","Anyama","Abobo","Koumassi","Yopougo
 let fileInput =ref(null);
 const partiePolitiques = ref([]);
 const pt_id = ref('');
+const message = ref('');
+const erreur = ref(null);
 
 const widget = window.cloudinary.createUploadWidget({
   cloud_name:"dmxpzyrnz",upload_preset:"mavoix"},
@@ -80,7 +82,6 @@ function handleFileChange (event) {
           // console.log(pair[0] + ': ' + pair[1]);
           // }
      
-       
         try {
           console.log(localStorage.getItem('userToken'));
           const response = await axios.post('https://lesinnovateurs.me/api/admin/add-candidat', data, {
@@ -91,8 +92,13 @@ function handleFileChange (event) {
             },
           });
           console.log('Image uploaded successfully!', response.data);
+          message.value = response.data.message
+          setInterval(() => {
+            message.value = '';
+          }, 2000);
         } catch (error) {
-          console.error('Error uploading image:', error);
+          // console.error('Error uploading image:', error);
+          erreur.value = error.response.data.message;
         }
       
 
@@ -118,6 +124,8 @@ watch(photo_url, (newUrl, oldUrl) => {
     <!-- component -->
 <div class="min-h-screen p-6 bg-gray-50 flex items-center justify-center">
   <div class="container max-w-screen-lg mx-auto">
+    <h1 class="text-green-500">{{ message }}</h1>
+    <h1 class="text-red-500">{{ erreur }}</h1>
     <form @submit.prevent="AddCandidat()" enctype="multipart/form-data">
       <div>
         <h1 class="p-4 font-primary font-bold text-xl">Ajouter un Candidat</h1>

@@ -4,6 +4,9 @@ import {ref, onMounted} from 'vue';
 import axios from 'axios'
 
 const  candidatList = ref([]);
+const message = ref('');
+const erreur = ref(null);
+
 
  async function fetchAllCandidat(){
   let response = await axios.get('https://lesinnovateurs.me/api/public/candidats');
@@ -13,6 +16,31 @@ const  candidatList = ref([]);
   console.log(item.user.nom);
 });
 };
+
+async function deleteCandidat(id){
+  let response =  await axios.delete(`https://lesinnovateurs.me/api/admin/get-user/${id}`,{
+    headers: {
+              'Content-Type': 'multipart/form-data',
+              Accept:"application/json",
+            Authorization:`Bearer ${localStorage.getItem("userToken")}`
+            },
+  })
+    .then((response)=>{
+        console.log(response.data);
+        message.value = response.data.message;
+        setInterval(() => {
+            message.value = "";
+        }, 2000);
+        fetchAllCandidat();
+    })
+    .catch((error)=>{
+        erreur.value = error.response.data.message;
+    });
+    
+
+}
+
+
 
 onMounted(()=>{
   fetchAllCandidat();
@@ -30,9 +58,27 @@ onMounted(()=>{
 <section class="container px-4 mx-auto p-4">
 
 
-    <div class="mt-6 md:flex md:items-center md:justify-between">
+    <div class="mt-6 md:flex md:items-center justify-between">
+
+        <div v-if="message" class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-2 shadow-md" role="alert">
+  <div class="flex">
+    <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+    <div>
+     
+      <p class="text-sm">{{message}}.</p>
+    </div>
+  </div>
+</div>
 
 
+<div v-if="erreur" class="w-1/3" role="alert">
+  <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2 ">
+    erreur
+  </div>
+  <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+    <p>{{erreur}}.</p>
+  </div>
+</div>
         <div class="relative flex items-center mt-4 md:mt-0">
             <span class="absolute">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mx-3 text-gray-400 dark:text-gray-600">
@@ -108,7 +154,7 @@ onMounted(()=>{
                                 </td>
 
                                 <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <button class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
+                                    <button @click="deleteCandidat(candidat.user.id)" class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                                         </svg>

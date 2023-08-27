@@ -1,6 +1,6 @@
 <template>
   <!-- logo  & menu-->
-  <div>
+  <nav>
     <Teleport to="body">
       <!-- use the modal component, pass in the prop -->
       <modal :show="showModal">
@@ -50,10 +50,12 @@
       <img class="h-16" src="@/assets/logo.png" alt="logo" />
     </div>
     <!-- menu -->
-    <div class="flex flex-col items-center justify-center">
+
+    <ul class="menu flex flex-col items-center justify-center">
       <!-- Dashbord button -->
-      <div class="w-48 p-2 bg-green-800 mt-6 flex items-center justify-start rounded mb-2">
-        <router-link to="/home" class="flex items-center justify-center">
+       <li>
+          <div class="w-48 p-2 mt-2 flex items-center justify-start rounded hover:bg-green-900 hover:text-white">
+        <router-link active-class="active-link" to="/home" class="flex items-center justify-between">
           <svg
             class="ml-2"
             width="12"
@@ -71,10 +73,12 @@
           <span class="text-white text-xs ml-2">TABLEAUX DE BORD</span>
         </router-link>
       </div>
-      <div
-        class="w-48 p-2 mt-2 flex items-center justify-start rounded hover:bg-green-900 hover:text-white"
-      >
-        <Button class="flex items-center justify-center">
+       </li>
+
+
+      <li>
+        <div  class="w-48 p-2 mt-2 flex items-center justify-start rounded hover:bg-green-900 hover:text-white">
+        <router-link active-class="active-link" to="/newCandidat" class="flex items-center justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -91,14 +95,16 @@
           </svg>
 
           <span class="text-xs ml-2">
-            <router-link to="/newCandidat">Ajouter un candidat</router-link>
+            Ajouter un candidat
           </span>
-        </Button>
+        </router-link>
       </div>
-      <div
-        class="w-48 p-2 mt-1 flex items-center justify-start rounded hover:bg-green-900 hover:text-white"
-      >
-        <router-link to="/candidats" class="flex items-center justify-center">
+    </li>
+
+
+
+      <li class="w-48 p-2 mt-1 flex items-center justify-start rounded hover:bg-green-900 hover:text-white">
+        <router-link active-class="active-link" to="/candidats" class="flex items-center justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -115,12 +121,11 @@
           </svg>
           <span class="text-xs ml-2">Liste des candidats</span>
         </router-link>
-      </div>
+      </li>
 
-      <div
-        class="w-48 p-2 mt-2 flex items-center justify-start rounded hover:bg-green-900 hover:text-white"
-      >
-        <Button class="flex items-center justify-center">
+      <li>
+        <div  class="w-48 p-2 mt-2 flex items-center justify-start rounded hover:bg-green-900 hover:text-white">
+        <router-link active-class="active-link" to="/add-sondage" class="flex items-center justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -135,15 +140,16 @@
               d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.068.157 2.148.279 3.238.364.466.037.893.281 1.153.671L12 21l2.652-3.978c.26-.39.687-.634 1.153-.67 1.09-.086 2.17-.208 3.238-.365 1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
             />
           </svg>
-          <router-link to="/add-sondage">
+         
             <span class="text-xs ml-2">Creer un sondage</span>
-          </router-link>
-        </Button>
+         
+        </router-link>
       </div>
+    </li>
 
-      <div
-        class="w-48 p-2 mt-2 flex items-center justify-start rounded hover:bg-green-900 hover:text-white"
-      >
+   
+    <li>
+      <div  class="w-48 p-2 mt-2 flex items-center justify-start rounded hover:bg-green-900 hover:text-white">
         <Button class="flex items-center justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -164,8 +170,10 @@
           </router-link>
         </Button>
       </div>
-    </div>
-  </div>
+    </li>
+     
+    </ul>
+  </nav>
 </template>
 
 <script setup>
@@ -175,7 +183,11 @@ const showModal = ref(false);
 </script>
 
 <style scoped>
-.active-class {
-  background: #011f01;
+ nav .active-link {
+  background: rgb(1, 87, 27);
+  width: 100%;
+  border-radius: 3%;
+  padding:4px ;
+  color: white;
 }
 </style>
