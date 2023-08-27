@@ -20,20 +20,16 @@ import NavBar from "@/components/NavBar.vue";
 		<div class="w-full h-full ml-4  overflow-y-auto  ">
 			<!-- Navbar -->
 			<div class="bg-white shadow-md w-full h-16 rounded-lg mb   ">
-				<NavBar class=" w-full  " />
+				<NavBar class="w-full" />
 			</div>
 			<!-- RouterView -->
 			<div class="">
 				<router-view></router-view>
 			</div>
-			
-		
 
 		</div>
 	</div>
 	</div>
-
 </template>
-
 <style>
 </style>

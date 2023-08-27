@@ -7,24 +7,24 @@ const routes =[
   {
     path:'/dashboard',
     name:'Dashboard',
-    component:()=> import('@/views/Dashboard/Dashboard.vue'),
+    component:()=> import('@/views/dashboard/Dashboard.vue'),
     children: [
       {
 
         path: '/newCandidat',
-        component: ()=> import('@/views/Dashboard/NewCandidat.vue'),
+        component: ()=> import('@/views/dashboard/NewCandidat.vue'),
       },
       {
         path: '/home',
-        component: ()=> import('@/views/Dashboard/Home.vue'),
+        component: ()=> import('@/views/dashboard/Home.vue'),
       },
       {
         path: '/candidats',
-        component: ()=> import('@/views/Dashboard/CandidatList.vue'),
+        component: ()=> import('@/views/dashboard/CandidatList.vue'),
       },
       {
         path: '/add-sondage',
-        component: ()=> import('@/views/Dashboard/AddSondage.vue'),
+        component: ()=> import('@/views/dashboard/AddSondage.vue'),
       },
     ],
   },
